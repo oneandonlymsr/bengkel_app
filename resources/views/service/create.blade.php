@@ -24,6 +24,9 @@
               <a class="nav-link" href="{{route('services.index')}}">Daftar Jasa</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="{{route('services.create')}}">Tambah Jasa</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="{{route('alamat.index')}}">ALamat</a>
             </li>
           </ul>
