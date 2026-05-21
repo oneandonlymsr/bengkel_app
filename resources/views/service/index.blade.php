@@ -8,8 +8,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
 
     </head>
-    <body class="bg-dark">
-    <nav class="navbar navbar-light navbar-expand-lg shadow bg-light mb-4 sticky-top">
+    <body class="bg-dark text-white">
+    <nav class="navbar navbar-dark navbar-expand-lg navbar-expand-lg border-bottom border-3 border-danger shadow bg-black mb-4 sticky-top">
         <div class="container lead lh-lg">
         <a class="navbar-brand" href="#">Bengkelku</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,6 +25,10 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{route('services.create')}}">Tambah Jasa</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('alamat.index')}}">Alamat</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -32,10 +36,10 @@
 
     <div class="container mt-5">
         <h1 class="mb-4">Jasa Bengkel</h1>
-        <a href="{{route('services.create')}}" class="btn btn-primary mb-3">+Tambah Jasa</a>
+        <a href="{{route('services.create')}}" class="btn btn-danger mb-3 fw-bold text-white shadow">+Tambah Jasa</a>
 
-        <table class="table table-bordered table-striped mt-3">
-            <thead class="table-dark">
+        <table class="table table-dark table-hover table-bodered border-secondary mt-3">
+            <thead class="table-danger text-dark">
                 <tr>
                     <th width="5%">No</th>
                     <th width="30%">Nama Layanan</th>
@@ -50,7 +54,11 @@
                     <td><strong>{{$service->nama_layanan}}</strong></td>
                     <td>{{$service->deskripsi}}</td>
                     <td>
-                        <span class="text-muted">Aksi</span>
+                        <form action="{{route('services.destroy', $service->id)}}" method="POST" onsubmit="return confirm('Yakin ingin menghapus jasa ini?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Hapus</button>
+                        </form>    
                     </td>
                 </tr>   
                 @endforeach             
