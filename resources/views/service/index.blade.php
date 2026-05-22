@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bengkelku</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
 
     </head>
     <body class="bg-dark text-white">
@@ -54,11 +54,14 @@
                     <td><strong>{{$service->nama_layanan}}</strong></td>
                     <td>{{$service->deskripsi}}</td>
                     <td>
+                      <div class="d-flex gap-2">
+                        <a href="{{route('services.edit', $service->id)}}" class="btn btn-warning btn-sm text-dark fw-bold">Edit</a>
                         <form action="{{route('services.destroy', $service->id)}}" method="POST" onsubmit="return confirm('Yakin ingin menghapus jasa ini?')">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-outline-danger btn-sm">Hapus</button>
-                        </form>    
+                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                        </form> 
+                      </div>     
                     </td>
                 </tr>   
                 @endforeach             

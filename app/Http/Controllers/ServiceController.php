@@ -35,4 +35,15 @@ class ServiceController extends Controller
    $service->delete();
    return redirect()->route('services.index');
   }
+  public function edit ($id)
+  {
+   $service = \App\Models\Service::findOrFail($id);
+   return view('service.edit', compact('service'));
+  }
+  public function update (Request $request, $id)
+  {
+   $service = \App\Models\Service::findOrFail($id);
+   $service->update($request->all());
+   return redirect()->route('services.index')->with('success', 'Data jasa berhasil diperbarui!');
+  }
 }  
